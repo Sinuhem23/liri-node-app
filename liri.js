@@ -25,6 +25,9 @@ switch (liriCommands) {
     console.log("Liri can not do that yet.");
 
 }
+function getArtistName(artist) {
+    return artist.name
+}
 
 // Spotify search
 function getMeSpotify(inputSearch) {
@@ -37,17 +40,16 @@ function getMeSpotify(inputSearch) {
 
         var songs = data.tracks.items;
         for (var i = 0; i < songs.length; i++) {
-
             var albumObject = songs[i].album;
             var trackName = songs[i].name;
             var preview = songs[i].preview_url;
 
 // store artists array to vars
             console.log(i);
-            console.log('\nartist(s): ' + albumObject.name);
+            console.log('\nartist(s): ' + songs[i].artists.map(getArtistName));
             console.log('\nsong name: ' + trackName);
             console.log('\npreview song: ' + preview);
-            console.log('\nartist(s): ' + albumObject.name);
+            console.log('\nalbum name: ' + albumObject.name);
             console.log('\n');
            
             
