@@ -114,12 +114,19 @@ function getMyMovie(inputSearch) {
 }
 //concert function api
 function getMyConcert() {
-  axios
+    axios
     .get(
-      "https://rest.bandsintown.com/artists/" + inputSearch +"?app_id=codingbootcamp"
+        
+        "https://rest.bandsintown.com/artists/" + inputSearch + "/events?app_id=codingbootcamp"
     )
     .then(function(response) {
-      console.log(response);
+
+        var concertGet = response.data;
+
+        // var concertData = ["Venue: " + concertGet.venue.name, "Venue Location: " + concertGet.venue.country + ',' + concertGet.venue.city];
+      axios
+
+      console.log(concertGet);
     })
     .catch(function(err) {
       if (err) {
@@ -135,6 +142,8 @@ function getMyConcert() {
         console.log("Error", err.message);
       }
     });
+  
+    
 }
 function getWhatItSays() {
     
