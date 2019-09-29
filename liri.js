@@ -6,6 +6,9 @@ var keys = require('./keys.js');
 var Spotify = require('node-spotify-api');
 //  save key to var
 var spotify = new Spotify(keys.spotify);
+//  require request
+var request = require('request');
+
  
 
 var fs = require ('fs');
@@ -17,25 +20,25 @@ var inputSearch = process.argv.slice(3).join(" ");
 
 switch (liriCommands) {
     case 'spotify-this-song':
-//  name of function (spotify)
-    getMeSpotify(inputSearch);
+  //  name of function (spotify)
+         getMeSpotify(inputSearch);
     break;
 
     default:
     console.log("Liri can not do that yet.");
 
 }
+
+// Artist's Name
 function getArtistName(artist) {
     return artist.name
 }
 
 // Spotify search
 function getMeSpotify(inputSearch) {
-
-    spotify.search({ type: 'track', query: inputSearch }, function(err, data) {
-
-        if(err) {
-            return console.log('Error occurred: ' + err);
+ spotify.search({ type: 'track', query: inputSearch },         function(err, data) {
+     if(err) {
+         return console.log('Error occurred: ' + err);
         }
 
         var songs = data.tracks.items;
@@ -59,3 +62,9 @@ function getMeSpotify(inputSearch) {
         }
     });
 }
+var omdKey = "&apikey=31da8785"
+request('http://www.omdbapi.com/?t=pulp+fiction' + omdKey, function (error, response, body) {
+  if (!error && response.statusCode === 200) {
+      console.log(body); // Print the error if one occurred
+  }
+});
