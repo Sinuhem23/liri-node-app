@@ -51,6 +51,9 @@ function getMeSpotify(inputSearch) {
             console.log('\npreview song: ' + preview);
             console.log('\nalbum name: ' + albumObject.name);
             console.log('\n');
+            console.log('/////////////////////////////////////////////////////////////////////////////////////');
+            console.log('\n');
+
            
             
         }
