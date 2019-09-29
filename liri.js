@@ -124,7 +124,6 @@ function getMyConcert() {
         var concertGet = response.data;
 
         // var concertData = ["Venue: " + concertGet.venue.name, "Venue Location: " + concertGet.venue.country + ',' + concertGet.venue.city];
-      axios
 
       console.log(concertGet);
     })
