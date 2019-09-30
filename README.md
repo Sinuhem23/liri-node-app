@@ -4,7 +4,9 @@ This App is pulling information from various artist. Itll demonstrate their song
 
 In order to run this app, please type "node liri.js" first, then,
 
-To obtain:
+
+
+To obtain,
     For Artist's songs, type "spotify-this-song"
       My example:
         (https://drive.google.com/open?id=18cjR23qQYJnxICiK_Y8BBeHeQa1YT9ll)
