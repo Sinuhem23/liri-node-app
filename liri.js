@@ -112,38 +112,52 @@ function getMyMovie(inputSearch) {
       }
     });
 }
-//concert function api
+///concert function api
 function getMyConcert() {
+    // if inputSearch is left empty default movie will be "lord of the rings".
+    if (inputSearch === "") {
+      console.log("Please enter an Artist/Band name");
+    }
     axios
-    .get(
-        
-        "https://rest.bandsintown.com/artists/" + inputSearch + "/events?app_id=codingbootcamp"
-    )
-    .then(function(response) {
+      .get(
+        "https://rest.bandsintown.com/artists/" +
+          inputSearch +
+          "/events?app_id=codingbootcamp"
+      )
+      .then(function(response) {
+        //   console.log(response.data);
+        var bandRespon = response.data;
+        //Moments formatter for date
+        var date = moment(dateEvent).format("MMM Do YYYY");
+        if (bandRespon < 1) {
+          console.log("No upcoming show of Artist/Band, try again");
+        } else {
+          // loop to go through all the response in bandsintown api
+          for (i = 0; i < bandRespon.length; i++) {
+            var venueNam = bandRespon[i].venue.name;
+            var venueLoc = bandRespon[i].venue.country;
+            var dateEvent = bandRespon[i].datetime;
+            console.log("///////////////////////////////////////////////////////////////////////////");
+            console.log("\n");
+            console.log("Venue Name: " + venueNam);
+            console.log("Venue Location: " + venueLoc);
+            console.log("Venue Date: " + date);
+            console.log("\n");
+            console.log("///////////////////////////////////////////////////////////////////////////");
 
-        var concertGet = response.data;
-
-        // var concertData = ["Venue: " + concertGet.venue.name, "Venue Location: " + concertGet.venue.country + ',' + concertGet.venue.city];
-
-      console.log(concertGet);
-    })
-    .catch(function(err) {
-      if (err) {
-        console.log("---------------Data---------------");
-        console.log(err.response);
-        console.log("---------------Status---------------");
-        console.log(err.response.status);
-        console.log("---------------Status---------------");
-        console.log(err.response.headers);
-      } else if (err.request) {
-        console.log(err.request);
-      } else {
-        console.log("Error", err.message);
-      }
-    });
-  
-    
-}
+          }
+        }
+      })
+      .catch(function(err) {
+        if (err) {
+          return console.log("Error occurred: " + err);
+        } else if (err.request) {
+          console.log(err.request);
+        } else {
+          console.log("Error", err.message);
+        }
+      });
+  }
 function getWhatItSays() {
     
 fs.readFile("random.txt", "utf8", function (error, data) {
